@@ -1,5 +1,6 @@
 package br.com.zup.estrelas.carrinho.cliente.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "quadrinho_carrinho")
-public class QuadrinhoCarrinho {
+public class QuadrinhoCarrinhoEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +20,9 @@ public class QuadrinhoCarrinho {
 	private CarrinhoEntity idCarrinho;
 
 	@ManyToOne
-	private Quadrinho idQuadrinho;
+	private QuadrinhoEntity idQuadrinho;
 
+	@Column(nullable = false)
 	private Integer quantidade;
 
 	public Long getIdQuadrinhoCliente() {
@@ -47,11 +49,11 @@ public class QuadrinhoCarrinho {
 		this.idCarrinho = idCarrinho;
 	}
 
-	public Quadrinho getIdQuadrinho() {
+	public QuadrinhoEntity getIdQuadrinho() {
 		return idQuadrinho;
 	}
 
-	public void setIdQuadrinho(Quadrinho idQuadrinho) {
+	public void setIdQuadrinho(QuadrinhoEntity idQuadrinho) {
 		this.idQuadrinho = idQuadrinho;
 	}
 }
