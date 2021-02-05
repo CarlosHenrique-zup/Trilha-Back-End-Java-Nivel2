@@ -14,6 +14,7 @@ public class QuadrinhoCarrinhoEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_quadrinho_cliente")
 	private Long idQuadrinhoCliente;
 
 	@ManyToOne

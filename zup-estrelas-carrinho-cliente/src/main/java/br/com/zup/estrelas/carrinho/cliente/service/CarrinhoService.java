@@ -12,8 +12,8 @@ public interface CarrinhoService {
 
 	public List<CarrinhoEntity> listarCarrinho();
 
-	public MensagemDTO alterarQuadrinho(QuadrinhoDTO quadrinhoDTO);
+	public MensagemDTO alterarQuadrinho(Long idQuadrinho, QuadrinhoDTO quadrinhoDTO);
 
-	public MensagemDTO removerCarrinho(Long idCarrinho);
+//	public MensagemDTO removerQuadrinho(Long idCarrinho);
 
 }

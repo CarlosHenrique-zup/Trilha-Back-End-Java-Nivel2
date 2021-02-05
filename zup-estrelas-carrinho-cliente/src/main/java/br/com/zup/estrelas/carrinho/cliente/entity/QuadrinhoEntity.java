@@ -13,6 +13,7 @@ public class QuadrinhoEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_quadrinho")
 	private Long idQuadrinho;
 
 	@Column(nullable = false)

@@ -8,4 +8,5 @@ import br.com.zup.estrelas.carrinho.cliente.entity.CarrinhoEntity;
 @Repository
 public interface CarrinhoRepository extends CrudRepository<CarrinhoEntity, Long> {
 
+//	List<CarrinhoEntity> findAllByQuadrinhoIdQuadrinho(Long idQuadrinho);
 }
