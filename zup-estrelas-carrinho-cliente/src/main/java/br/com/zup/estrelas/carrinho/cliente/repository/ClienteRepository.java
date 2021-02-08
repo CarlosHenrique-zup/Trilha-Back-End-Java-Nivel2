@@ -9,4 +9,6 @@ import br.com.zup.estrelas.carrinho.cliente.entity.ClienteEntity;
 public interface ClienteRepository extends CrudRepository<ClienteEntity, Long> {
 
 	boolean findByCpf(String cpf);
+
+	boolean existsByCpf(String cpf);
 }

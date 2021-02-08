@@ -32,6 +32,9 @@ public class ClienteEntity {
 	private String cpf;
 
 	@Column(nullable = false)
+	private Integer idade;
+
+	@Column(nullable = false)
 	private String endereco;
 
 	@Column(nullable = false)
@@ -91,5 +94,13 @@ public class ClienteEntity {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public Integer getIdade() {
+		return idade;
+	}
+
+	public void setIdade(Integer idade) {
+		this.idade = idade;
 	}
 }
