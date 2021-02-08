@@ -28,6 +28,9 @@ public class QuadrinhoEntity {
 	@Column(nullable = false)
 	private String descricao;
 
+	@Column(nullable = false)
+	private Integer quantidade;
+
 	public Long getIdQuadrinho() {
 		return idQuadrinho;
 	}
@@ -66,5 +69,13 @@ public class QuadrinhoEntity {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 }

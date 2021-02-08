@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,6 +24,10 @@ public class CarrinhoEntity {
 
 	@OneToMany(mappedBy = "carrinho")
 	private List<ClienteEntity> idCliente;
+
+	@OneToMany
+	@JoinColumn(name = "id_quadrinho", foreignKey = @ForeignKey(name = "FK_QUADRINHO_CARRINHO"))
+	private List<QuadrinhoCarrinhoEntity> quadrinhoCarrinho;
 
 	@Column(nullable = false)
 	private String nome;

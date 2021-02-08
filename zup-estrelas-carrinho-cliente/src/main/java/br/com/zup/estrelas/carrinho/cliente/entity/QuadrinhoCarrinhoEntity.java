@@ -14,8 +14,8 @@ public class QuadrinhoCarrinhoEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_quadrinho_cliente")
-	private Long idQuadrinhoCliente;
+	@Column(name = "id_quadrinho_carrinho")
+	private Long idQuadrinhoCarrinho;
 
 	@ManyToOne
 	private CarrinhoEntity idCarrinho;
@@ -25,14 +25,6 @@ public class QuadrinhoCarrinhoEntity {
 
 	@Column(nullable = false)
 	private Integer quantidade;
-
-	public Long getIdQuadrinhoCliente() {
-		return idQuadrinhoCliente;
-	}
-
-	public void setIdQuadrinhoCliente(Long idQuadrinhoCliente) {
-		this.idQuadrinhoCliente = idQuadrinhoCliente;
-	}
 
 	public Integer getQuantidade() {
 		return quantidade;
@@ -56,5 +48,13 @@ public class QuadrinhoCarrinhoEntity {
 
 	public void setIdQuadrinho(QuadrinhoEntity idQuadrinho) {
 		this.idQuadrinho = idQuadrinho;
+	}
+
+	public Long getIdQuadrinhoCarrinho() {
+		return idQuadrinhoCarrinho;
+	}
+
+	public void setIdQuadrinhoCarrinho(Long idQuadrinhoCarrinho) {
+		this.idQuadrinhoCarrinho = idQuadrinhoCarrinho;
 	}
 }
