@@ -1,10 +1,10 @@
 package br.com.zup.estrelas.carrinho.cliente.service;
 
-import br.com.zup.estrelas.carrinho.cliente.dto.MensagemDTO;
-import br.com.zup.estrelas.carrinho.cliente.dto.QuadrinhoDTO;
+import java.util.List;
+
+import br.com.zup.estrelas.carrinho.cliente.entity.CarrinhoEntity;
 
 public interface CarrinhoService {
 
-	public MensagemDTO adicionarQuadrinho(QuadrinhoDTO quadrinhoDTO);
-
+	public List<CarrinhoEntity> listarCarrinhos();
 }

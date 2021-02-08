@@ -1,6 +1,5 @@
 package br.com.zup.estrelas.carrinho.cliente.entity;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,18 +10,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cliente")
-public class ClienteEntity  {
+@Table(name = "cliente")
+public class ClienteEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cliente")
 	private Long idCliente;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_carrinho", nullable = false)
 	private CarrinhoEntity carrinho;
-	
+
 	@Column(nullable = false)
 	private String nome;
 
@@ -30,7 +29,7 @@ public class ClienteEntity  {
 	private String email;
 
 	@Column(nullable = false)
-	private Long cpf;
+	private String cpf;
 
 	@Column(nullable = false)
 	private String endereco;
@@ -62,14 +61,6 @@ public class ClienteEntity  {
 		this.email = email;
 	}
 
-	public Long getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
-	}
-
 	public String getEndereco() {
 		return endereco;
 	}
@@ -84,5 +75,21 @@ public class ClienteEntity  {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public CarrinhoEntity getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(CarrinhoEntity carrinho) {
+		this.carrinho = carrinho;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 }

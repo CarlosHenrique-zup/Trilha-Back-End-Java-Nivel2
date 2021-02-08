@@ -3,9 +3,10 @@ package br.com.zup.estrelas.carrinho.cliente.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.zup.estrelas.carrinho.cliente.entity.CarrinhoEntity;
+import br.com.zup.estrelas.carrinho.cliente.entity.ClienteEntity;
 
 @Repository
-public interface CarrinhoRepository extends CrudRepository<CarrinhoEntity, Long> {
+public interface ClienteRepository extends CrudRepository<ClienteEntity, Long> {
 
+	boolean findByCpf(String cpf);
 }
