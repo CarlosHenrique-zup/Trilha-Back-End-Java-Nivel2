@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +17,10 @@ public class QuadrinhoEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_quadrinho")
 	private Long idQuadrinho;
+
+	@ManyToOne
+	@JoinColumn(name = "id_carrinho", nullable = false)
+	private QuadrinhoCarrinhoEntity carrinhoQuadrinho;
 
 	@Column(nullable = false)
 	private String nome;

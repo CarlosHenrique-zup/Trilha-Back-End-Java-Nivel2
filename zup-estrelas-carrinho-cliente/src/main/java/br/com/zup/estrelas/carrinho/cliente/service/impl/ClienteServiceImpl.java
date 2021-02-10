@@ -29,11 +29,13 @@ public class ClienteServiceImpl implements ClienteService {
 	public MensagemDTO adicionarCliente(ClienteDTO clienteDTO) {
 		ClienteEntity cliente = new ClienteEntity();
 
-		if (clienteRepository.existsByCpf(cliente.getCpf())) {
+		if (clienteRepository.existsByCpf(clienteDTO.getCpf())) {
 			return new MensagemDTO(CLIENTE_JA_EXISTENTE);
 		}
 
 		BeanUtils.copyProperties(clienteDTO, cliente);
+
+		clienteRepository.save(cliente);
 
 		return new MensagemDTO(CLIENTE_CADASTRADO_COM_SUCESSO);
 	}
@@ -60,7 +62,6 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	public MensagemDTO removerCliente(Long idCliente) {
-
 		if (clienteRepository.existsById(idCliente)) {
 			clienteRepository.deleteById(idCliente);
 

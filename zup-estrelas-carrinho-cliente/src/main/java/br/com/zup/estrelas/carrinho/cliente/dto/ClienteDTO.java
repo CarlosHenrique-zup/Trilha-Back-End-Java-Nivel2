@@ -12,7 +12,7 @@ public class ClienteDTO {
 	private String email;
 
 	@NotNull(message = "O campo não pode ser vazio.")
-	private Long cpf;
+	private String cpf;
 
 	@Positive(message = "O campo deve ser maior que zero.")
 	@NotNull(message = "O campo não pode ser vazio.")
@@ -40,14 +40,6 @@ public class ClienteDTO {
 		this.email = email;
 	}
 
-	public Long getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
-	}
-
 	public Integer getIdade() {
 		return idade;
 	}
@@ -70,6 +62,14 @@ public class ClienteDTO {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 }

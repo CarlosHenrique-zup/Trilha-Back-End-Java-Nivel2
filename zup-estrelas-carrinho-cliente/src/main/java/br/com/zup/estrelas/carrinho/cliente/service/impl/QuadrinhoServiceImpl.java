@@ -1,5 +1,6 @@
 package br.com.zup.estrelas.carrinho.cliente.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -36,6 +37,10 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
 		quadrinhoRepository.save(quadrinho);
 
 		return new MensagemDTO(QUADRINHO_CADASTRADO_COM_SUCESSO);
+	}
+
+	public List<QuadrinhoEntity> listarQuadrinho() {
+		return (List<QuadrinhoEntity>) quadrinhoRepository.findAll();
 	}
 
 	public MensagemDTO alterarQuadrinho(Long idQuadrinho, QuadrinhoDTO quadrinhoDTO) {

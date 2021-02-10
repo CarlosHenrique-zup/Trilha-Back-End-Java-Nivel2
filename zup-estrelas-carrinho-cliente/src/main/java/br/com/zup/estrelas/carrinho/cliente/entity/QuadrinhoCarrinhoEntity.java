@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,10 +19,12 @@ public class QuadrinhoCarrinhoEntity {
 	private Long idQuadrinhoCarrinho;
 
 	@ManyToOne
-	private CarrinhoEntity idCarrinho;
+	@JoinColumn(name = "id_carrinho", nullable = false)
+	private CarrinhoEntity carrinho;
 
 	@ManyToOne
-	private QuadrinhoEntity idQuadrinho;
+	@JoinColumn(name = "id_quadrinho", nullable = false)
+	private QuadrinhoEntity quadrinho;
 
 	@Column(nullable = false)
 	private Integer quantidade;
@@ -34,27 +37,27 @@ public class QuadrinhoCarrinhoEntity {
 		this.quantidade = quantidade;
 	}
 
-	public CarrinhoEntity getIdCarrinho() {
-		return idCarrinho;
-	}
-
-	public void setIdCarrinho(CarrinhoEntity idCarrinho) {
-		this.idCarrinho = idCarrinho;
-	}
-
-	public QuadrinhoEntity getIdQuadrinho() {
-		return idQuadrinho;
-	}
-
-	public void setIdQuadrinho(QuadrinhoEntity idQuadrinho) {
-		this.idQuadrinho = idQuadrinho;
-	}
-
 	public Long getIdQuadrinhoCarrinho() {
 		return idQuadrinhoCarrinho;
 	}
 
 	public void setIdQuadrinhoCarrinho(Long idQuadrinhoCarrinho) {
 		this.idQuadrinhoCarrinho = idQuadrinhoCarrinho;
+	}
+
+	public CarrinhoEntity getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(CarrinhoEntity carrinho) {
+		this.carrinho = carrinho;
+	}
+
+	public QuadrinhoEntity getQuadrinho() {
+		return quadrinho;
+	}
+
+	public void setQuadrinho(QuadrinhoEntity quadrinho) {
+		this.quadrinho = quadrinho;
 	}
 }

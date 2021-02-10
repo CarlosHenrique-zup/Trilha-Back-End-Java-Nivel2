@@ -9,8 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -32,7 +32,8 @@ public class CarrinhoEntity {
 	@Column(nullable = false)
 	private String nome;
 
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "id_status_pedido", nullable = false)
 	private StatusPedidoEntity statusPedido;
 
 	public List<ClienteEntity> getIdCliente() {
@@ -49,6 +50,30 @@ public class CarrinhoEntity {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Long getIdCarrinho() {
+		return idCarrinho;
+	}
+
+	public void setIdCarrinho(Long idCarrinho) {
+		this.idCarrinho = idCarrinho;
+	}
+
+	public List<QuadrinhoCarrinhoEntity> getQuadrinhoCarrinho() {
+		return quadrinhoCarrinho;
+	}
+
+	public void setQuadrinhoCarrinho(List<QuadrinhoCarrinhoEntity> quadrinhoCarrinho) {
+		this.quadrinhoCarrinho = quadrinhoCarrinho;
+	}
+
+	public StatusPedidoEntity getStatusPedido() {
+		return statusPedido;
+	}
+
+	public void setStatusPedido(StatusPedidoEntity statusPedido) {
+		this.statusPedido = statusPedido;
 	}
 
 }

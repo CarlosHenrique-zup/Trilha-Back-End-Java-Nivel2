@@ -1,10 +1,13 @@
 package br.com.zup.estrelas.carrinho.cliente.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +18,9 @@ public class StatusPedidoEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_status_pedido")
 	private Long idStatusPedido;
+
+	@OneToMany(mappedBy = "statusPedido")
+	private List<CarrinhoEntity> carrinho;
 
 	@Column(nullable = false)
 	private String nome;

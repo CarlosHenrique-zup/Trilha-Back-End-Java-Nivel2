@@ -26,7 +26,7 @@ public class ClienteServiceImplTests {
 		cliente.setEmail("JuniorA2020@gmail.com");
 		cliente.setEndereco("Rua das Pedras");
 		cliente.setIdade(15);
-		cliente.setCpf(4242343243L);
+		cliente.setCpf("4242343243");
 		cliente.setTelefone("2093-0930");
 		return cliente;
 	}
