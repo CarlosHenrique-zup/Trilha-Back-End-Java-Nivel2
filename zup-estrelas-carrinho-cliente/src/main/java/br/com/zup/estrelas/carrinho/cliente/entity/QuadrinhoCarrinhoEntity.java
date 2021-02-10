@@ -29,6 +29,10 @@ public class QuadrinhoCarrinhoEntity {
 	@Column(nullable = false)
 	private Integer quantidade;
 
+	public QuadrinhoCarrinhoEntity() {
+
+	}
+
 	public Integer getQuantidade() {
 		return quantidade;
 	}

@@ -25,6 +25,10 @@ public class StatusPedidoEntity {
 	@Column(nullable = false)
 	private String nome;
 
+	public StatusPedidoEntity() {
+
+	}
+
 	public Long getIdStatusPedido() {
 		return idStatusPedido;
 	}

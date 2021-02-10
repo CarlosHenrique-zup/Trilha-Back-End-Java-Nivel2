@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "carrinho")
 public class CarrinhoEntity {
@@ -22,6 +24,7 @@ public class CarrinhoEntity {
 	@Column(name = "id_carrinho")
 	private Long idCarrinho;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "carrinho")
 	private List<ClienteEntity> idCliente;
 
@@ -33,8 +36,12 @@ public class CarrinhoEntity {
 	private String nome;
 
 	@ManyToOne
-	@JoinColumn(name = "id_status_pedido", nullable = false)
+	@JoinColumn(name = "id_status_pedido")
 	private StatusPedidoEntity statusPedido;
+
+	public CarrinhoEntity() {
+
+	}
 
 	public List<ClienteEntity> getIdCliente() {
 		return idCliente;

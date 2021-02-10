@@ -29,7 +29,7 @@ public class ClienteServiceImpl implements ClienteService {
 	public MensagemDTO adicionarCliente(ClienteDTO clienteDTO) {
 		ClienteEntity cliente = new ClienteEntity();
 
-		if (clienteRepository.existsByCpf(clienteDTO.getCpf())) {
+		if (clienteRepository.existsByCpf(cliente.getCpf())) {
 			return new MensagemDTO(CLIENTE_JA_EXISTENTE);
 		}
 

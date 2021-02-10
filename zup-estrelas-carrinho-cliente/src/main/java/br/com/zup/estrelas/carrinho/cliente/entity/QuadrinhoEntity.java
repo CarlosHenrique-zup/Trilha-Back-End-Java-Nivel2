@@ -37,6 +37,10 @@ public class QuadrinhoEntity {
 	@Column(nullable = false)
 	private Integer quantidade;
 
+	public QuadrinhoEntity() {
+
+	}
+
 	public Long getIdQuadrinho() {
 		return idQuadrinho;
 	}
