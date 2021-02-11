@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import br.com.zup.estrelas.carrinho.cliente.dto.MensagemDTO;
 import br.com.zup.estrelas.carrinho.cliente.dto.QuadrinhoCarrinhoDTO;
+import br.com.zup.estrelas.carrinho.cliente.entity.CarrinhoEntity;
 import br.com.zup.estrelas.carrinho.cliente.entity.QuadrinhoCarrinhoEntity;
+import br.com.zup.estrelas.carrinho.cliente.entity.QuadrinhoEntity;
 import br.com.zup.estrelas.carrinho.cliente.repository.QuadrinhoCarrinhoRepository;
 import br.com.zup.estrelas.carrinho.cliente.service.QuadrinhoCarrinhoService;
 
@@ -28,11 +30,19 @@ public class QuadrinhoCarrinhoServiceImpl implements QuadrinhoCarrinhoService {
 	public MensagemDTO adicionarQuadrinhoCarrinho(QuadrinhoCarrinhoDTO carrinhoQuadrinhoDTO) {
 		QuadrinhoCarrinhoEntity quadrinhoCarrinho = new QuadrinhoCarrinhoEntity();
 
-		if (quadrinhoCarrinhoRepository.existsById(carrinhoQuadrinhoDTO.getIdQuadrinhoCarrinho())) {
-			return new MensagemDTO(QUADRINHO_CARRINHO_JA_EXISTENTE);
-		}
+//		if (quadrinhoCarrinhoRepository.existsById(carrinhoQuadrinhoDTO.getIdQuadrinhoCarrinho())) {
+//			return new MensagemDTO(QUADRINHO_CARRINHO_JA_EXISTENTE);
+//		}
 
 		BeanUtils.copyProperties(carrinhoQuadrinhoDTO, quadrinhoCarrinho);
+
+		QuadrinhoEntity quadrinho = new QuadrinhoEntity();
+		quadrinho.setIdQuadrinho(carrinhoQuadrinhoDTO.getIdQuadrinho());
+		quadrinhoCarrinho.setQuadrinho(quadrinho);
+
+		CarrinhoEntity carrinho = new CarrinhoEntity();
+		carrinho.setIdCarrinho(carrinhoQuadrinhoDTO.getIdCarrinho());
+		quadrinhoCarrinho.setCarrinho(carrinho);
 
 		quadrinhoCarrinhoRepository.save(quadrinhoCarrinho);
 

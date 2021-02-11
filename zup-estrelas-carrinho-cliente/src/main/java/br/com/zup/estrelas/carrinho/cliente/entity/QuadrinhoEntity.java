@@ -1,12 +1,15 @@
 package br.com.zup.estrelas.carrinho.cliente.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,9 +21,9 @@ public class QuadrinhoEntity {
 	@Column(name = "id_quadrinho")
 	private Long idQuadrinho;
 
-	@ManyToOne
-	@JoinColumn(name = "id_carrinho", nullable = false)
-	private QuadrinhoCarrinhoEntity carrinhoQuadrinho;
+	@OneToMany
+	@JoinColumn(name = "id_quadrinho_carrinho", foreignKey = @ForeignKey(name = "FK_QUADRINHO_QUADRINHO_CARRINHO"))
+	private List<QuadrinhoCarrinhoEntity> quadrinhoCarrinho;
 
 	@Column(nullable = false)
 	private String nome;

@@ -25,8 +25,9 @@ public class CarrinhoEntity {
 	private Long idCarrinho;
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "carrinho")
-	private List<ClienteEntity> idCliente;
+	@ManyToOne
+	@JoinColumn(name = "id_cliente", nullable = false)
+	private ClienteEntity cliente;
 
 	@OneToMany
 	@JoinColumn(name = "id_quadrinho", foreignKey = @ForeignKey(name = "FK_QUADRINHO_CARRINHO"))
@@ -41,14 +42,6 @@ public class CarrinhoEntity {
 
 	public CarrinhoEntity() {
 
-	}
-
-	public List<ClienteEntity> getIdCliente() {
-		return idCliente;
-	}
-
-	public void setIdCliente(List<ClienteEntity> idCliente) {
-		this.idCliente = idCliente;
 	}
 
 	public String getNome() {
@@ -81,6 +74,14 @@ public class CarrinhoEntity {
 
 	public void setStatusPedido(StatusPedidoEntity statusPedido) {
 		this.statusPedido = statusPedido;
+	}
+
+	public ClienteEntity getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(ClienteEntity cliente) {
+		this.cliente = cliente;
 	}
 
 }

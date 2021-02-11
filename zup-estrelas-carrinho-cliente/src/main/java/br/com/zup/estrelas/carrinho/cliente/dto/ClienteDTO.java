@@ -5,6 +5,8 @@ import javax.validation.constraints.Positive;
 
 public class ClienteDTO {
 
+	private Long idCliente;
+
 	@NotNull(message = "O campo não pode ser vazio.")
 	private String nome;
 
@@ -70,6 +72,14 @@ public class ClienteDTO {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public Long getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
 	}
 
 }

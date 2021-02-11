@@ -1,12 +1,13 @@
 package br.com.zup.estrelas.carrinho.cliente.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -21,9 +22,8 @@ public class ClienteEntity {
 	private Long idCliente;
 
 	@JsonBackReference
-	@ManyToOne
-	@JoinColumn(name = "id_carrinho", nullable = false)
-	private CarrinhoEntity carrinho;
+	@OneToMany(mappedBy = "cliente")
+	private List<CarrinhoEntity> carrinho;
 
 	@Column(nullable = false)
 	private String nome;
@@ -87,14 +87,6 @@ public class ClienteEntity {
 		this.telefone = telefone;
 	}
 
-	public CarrinhoEntity getCarrinho() {
-		return carrinho;
-	}
-
-	public void setCarrinho(CarrinhoEntity carrinho) {
-		this.carrinho = carrinho;
-	}
-
 	public String getCpf() {
 		return cpf;
 	}
@@ -109,5 +101,13 @@ public class ClienteEntity {
 
 	public void setIdade(Integer idade) {
 		this.idade = idade;
+	}
+
+	public List<CarrinhoEntity> getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(List<CarrinhoEntity> carrinho) {
+		this.carrinho = carrinho;
 	}
 }
