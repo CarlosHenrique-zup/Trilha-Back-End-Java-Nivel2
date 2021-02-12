@@ -16,6 +16,9 @@ public class CarrinhoDTO {
 	@NotNull(message = "O campo não pode ser vazio.")
 	private StatusPedidoDTO statusPedido;
 
+	@NotNull(message = "O campo não pode ser vazio.")
+	private Integer quantidade;
+
 	public String getNome() {
 		return nome;
 	}
@@ -46,6 +49,14 @@ public class CarrinhoDTO {
 
 	public void setQuadrinhoCarrinho(List<QuadrinhoCarrinhoDTO> quadrinhoCarrinho) {
 		this.quadrinhoCarrinho = quadrinhoCarrinho;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 }

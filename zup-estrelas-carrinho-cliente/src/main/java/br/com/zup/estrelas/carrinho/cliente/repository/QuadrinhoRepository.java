@@ -9,4 +9,6 @@ import br.com.zup.estrelas.carrinho.cliente.entity.QuadrinhoEntity;
 public interface QuadrinhoRepository extends CrudRepository<QuadrinhoEntity, Long> {
 
 	boolean existsByNome(String nome);
+
+	boolean existsByIdQuadrinho(Long idQuadrinho);
 }

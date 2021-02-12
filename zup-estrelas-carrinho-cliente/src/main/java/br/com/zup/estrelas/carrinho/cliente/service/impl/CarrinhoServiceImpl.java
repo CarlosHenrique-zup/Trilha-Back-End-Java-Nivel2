@@ -60,7 +60,6 @@ public class CarrinhoServiceImpl implements CarrinhoService {
 	}
 
 	public List<CarrinhoEntity> listarCarrinhos() {
-
 		return (List<CarrinhoEntity>) carrinhoRepository.findAll();
 	}
 

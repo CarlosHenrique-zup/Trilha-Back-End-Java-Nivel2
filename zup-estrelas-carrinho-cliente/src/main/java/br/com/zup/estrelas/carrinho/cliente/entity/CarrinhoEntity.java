@@ -40,6 +40,9 @@ public class CarrinhoEntity {
 	@JoinColumn(name = "id_status_pedido")
 	private StatusPedidoEntity statusPedido;
 
+	@Column(nullable = false)
+	private Integer quantidade;
+
 	public CarrinhoEntity() {
 
 	}
@@ -82,6 +85,14 @@ public class CarrinhoEntity {
 
 	public void setCliente(ClienteEntity cliente) {
 		this.cliente = cliente;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 }

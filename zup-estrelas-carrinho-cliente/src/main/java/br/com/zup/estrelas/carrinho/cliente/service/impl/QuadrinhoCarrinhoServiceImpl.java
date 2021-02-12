@@ -12,7 +12,9 @@ import br.com.zup.estrelas.carrinho.cliente.dto.QuadrinhoCarrinhoDTO;
 import br.com.zup.estrelas.carrinho.cliente.entity.CarrinhoEntity;
 import br.com.zup.estrelas.carrinho.cliente.entity.QuadrinhoCarrinhoEntity;
 import br.com.zup.estrelas.carrinho.cliente.entity.QuadrinhoEntity;
+import br.com.zup.estrelas.carrinho.cliente.repository.CarrinhoRepository;
 import br.com.zup.estrelas.carrinho.cliente.repository.QuadrinhoCarrinhoRepository;
+import br.com.zup.estrelas.carrinho.cliente.repository.QuadrinhoRepository;
 import br.com.zup.estrelas.carrinho.cliente.service.QuadrinhoCarrinhoService;
 
 @Service
@@ -27,20 +29,33 @@ public class QuadrinhoCarrinhoServiceImpl implements QuadrinhoCarrinhoService {
 	@Autowired
 	QuadrinhoCarrinhoRepository quadrinhoCarrinhoRepository;
 
+	@Autowired
+	QuadrinhoRepository quadrinhoRepository;
+
+	@Autowired
+	CarrinhoRepository carrinhoRepository;
+
 	public MensagemDTO adicionarQuadrinhoCarrinho(QuadrinhoCarrinhoDTO carrinhoQuadrinhoDTO) {
 		QuadrinhoCarrinhoEntity quadrinhoCarrinho = new QuadrinhoCarrinhoEntity();
+		QuadrinhoEntity quadrinho = new QuadrinhoEntity();
+		CarrinhoEntity carrinho = new CarrinhoEntity();
 
 //		if (quadrinhoCarrinhoRepository.existsById(carrinhoQuadrinhoDTO.getIdQuadrinhoCarrinho())) {
 //			return new MensagemDTO(QUADRINHO_CARRINHO_JA_EXISTENTE);
 //		}
 
+		if (quadrinhoRepository.existsByIdQuadrinho(quadrinho.getIdQuadrinho())
+				|| carrinhoRepository.existsByIdCarrinho(carrinho.getIdCarrinho())) {
+			return new MensagemDTO(QUADRINHO_CARRINHO_JA_EXISTENTE);
+		}
+
 		BeanUtils.copyProperties(carrinhoQuadrinhoDTO, quadrinhoCarrinho);
 
-		QuadrinhoEntity quadrinho = new QuadrinhoEntity();
+		// QuadrinhoEntity quadrinho = new QuadrinhoEntity();
 		quadrinho.setIdQuadrinho(carrinhoQuadrinhoDTO.getIdQuadrinho());
 		quadrinhoCarrinho.setQuadrinho(quadrinho);
 
-		CarrinhoEntity carrinho = new CarrinhoEntity();
+		// CarrinhoEntity carrinho = new CarrinhoEntity();
 		carrinho.setIdCarrinho(carrinhoQuadrinhoDTO.getIdCarrinho());
 		quadrinhoCarrinho.setCarrinho(carrinho);
 

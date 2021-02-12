@@ -15,4 +15,6 @@ public interface CarrinhoRepository extends CrudRepository<CarrinhoEntity, Long>
 	List<CarrinhoEntity> findAll();
 
 	boolean existsByNome(String nome);
+
+	boolean existsByIdCarrinho(Long idCarrinho);
 }
