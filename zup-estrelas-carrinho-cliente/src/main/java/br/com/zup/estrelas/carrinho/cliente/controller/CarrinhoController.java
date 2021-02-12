@@ -32,8 +32,8 @@ public class CarrinhoController {
 	private final Logger log = LoggerFactory.getLogger(CarrinhoController.class);
 
 	private static final String CARRINHO_CADASTRADO_COM_SUCESSO = "Carrinho cadastrado com sucesso!";
-	private static final String CARRINHO_REMOVIDO_COM_SUCESSO = "Carrinho removido com sucesso!";
 	private static final String CARRINHO_ALTERADO_COM_SUCESSO = "Carrinho alterado com sucesso!";
+	private static final String CARRINHO_REMOVIDO_COM_SUCESSO = "Carrinho removido com sucesso!";
 
 	@Autowired
 	CarrinhoService carrinhoService;

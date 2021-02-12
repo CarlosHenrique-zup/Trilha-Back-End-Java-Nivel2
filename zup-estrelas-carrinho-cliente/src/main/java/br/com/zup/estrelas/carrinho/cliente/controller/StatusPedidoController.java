@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,6 +28,12 @@ import br.com.zup.estrelas.carrinho.cliente.service.StatusPedidoService;
 @RequestMapping("/statusPedido")
 public class StatusPedidoController {
 
+	private final Logger log = LoggerFactory.getLogger(CarrinhoController.class);
+
+	private static final String STATUS_PEDIDO_CADASTRADO_COM_SUCESSO = "Status Pedido cadastrado com sucesso!";
+	private static final String STATUS_PEDIDO_ALTERADO_COM_SUCESSO = "Status Pedido alterado com sucesso!";
+	private static final String STATUS_PEDIDO_REMOVIDO_COM_SUCESSO = "Status Pedidos removido com sucesso!";
+
 	@Autowired
 	StatusPedidoService statusPedidoService;
 
@@ -33,17 +41,24 @@ public class StatusPedidoController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public MensagemDTO adicionarStatusPedido(@Valid @RequestBody StatusPedidoDTO statusPedidoDTO)
 			throws GenericException {
-		return statusPedidoService.adicionaStatusPedido(statusPedidoDTO);
+		log.info("Entrando no metodo adicionar status pedido no Controller: " + statusPedidoDTO);
+		statusPedidoService.adicionaStatusPedido(statusPedidoDTO);
+
+		return new MensagemDTO(STATUS_PEDIDO_CADASTRADO_COM_SUCESSO);
 	}
 
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	public List<StatusPedidoEntity> listarStatusPedido() throws GenericException {
+		log.info("Entrando no metodo listar status pedido no Controller:");
 		return statusPedidoService.listarStatusPedido();
 	}
 
 	@DeleteMapping(path = "/{idStatusPedido}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public MensagemDTO removerStatusPedido(@PathVariable Long idStatusPedido) throws GenericException {
-		return statusPedidoService.removerStatusPedido(idStatusPedido);
+		log.info("Entrando no metodo alterar status pedido no Controller: " + idStatusPedido);
+		statusPedidoService.removerStatusPedido(idStatusPedido);
+
+		return new MensagemDTO(STATUS_PEDIDO_REMOVIDO_COM_SUCESSO);
 	}
 
 }

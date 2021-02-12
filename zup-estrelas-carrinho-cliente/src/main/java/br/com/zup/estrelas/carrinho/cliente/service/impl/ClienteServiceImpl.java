@@ -3,10 +3,13 @@ package br.com.zup.estrelas.carrinho.cliente.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.zup.estrelas.carrinho.cliente.controller.CarrinhoController;
 import br.com.zup.estrelas.carrinho.cliente.dto.ClienteDTO;
 import br.com.zup.estrelas.carrinho.cliente.dto.MensagemDTO;
 import br.com.zup.estrelas.carrinho.cliente.entity.ClienteEntity;
@@ -16,6 +19,8 @@ import br.com.zup.estrelas.carrinho.cliente.service.ClienteService;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
+
+	private final Logger log = LoggerFactory.getLogger(CarrinhoController.class);
 
 	private static final String CLIENTE_CADASTRADO_COM_SUCESSO = "Cliente cadastrado com sucesso!";
 	private static final String CLIENTE_REMOVIDO_COM_SUCESSO = "Cliente removido com sucesso!";
@@ -27,6 +32,7 @@ public class ClienteServiceImpl implements ClienteService {
 	ClienteRepository clienteRepository;
 
 	public MensagemDTO adicionarCliente(ClienteDTO clienteDTO) {
+		log.info("Entrando no metodo adicionar cliente na classe Service: " + clienteDTO);
 		ClienteEntity cliente = new ClienteEntity();
 
 		if (clienteRepository.existsByCpf(cliente.getCpf())) {
@@ -41,14 +47,17 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	public List<ClienteEntity> listarClientes() {
+		log.info("Entrando no metodo listar cliente na classe Service: ");
 		return (List<ClienteEntity>) clienteRepository.findAll();
 	}
 
 	public ClienteEntity consultarPorId(Long idCliente) throws GenericException {
+		log.info("Entrando no metodo listar cliente pelo Id na classe Service: ");
 		return clienteRepository.findById(idCliente).orElseThrow(() -> new GenericException(CLIENTE_INEXISTENTE));
 	}
 
 	public MensagemDTO alterarCliente(Long idCliente, ClienteDTO clienteDTO) {
+		log.info("Entrando no metodo alterar cliente na classe Service: " + clienteDTO);
 		Optional<ClienteEntity> clienteConsultado = clienteRepository.findById(idCliente);
 
 		if (clienteConsultado.isEmpty()) {
@@ -62,6 +71,7 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	public MensagemDTO removerCliente(Long idCliente) {
+		log.info("Entrando no metodo remover cliente na classe Service: " + idCliente);
 		if (clienteRepository.existsById(idCliente)) {
 			clienteRepository.deleteById(idCliente);
 

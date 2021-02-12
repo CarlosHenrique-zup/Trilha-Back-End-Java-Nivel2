@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,6 +29,12 @@ import br.com.zup.estrelas.carrinho.cliente.service.QuadrinhoCarrinhoService;
 @RequestMapping("/quadrinhoCarrinho")
 public class QuadrinhoCarrinhoController {
 
+	private final Logger log = LoggerFactory.getLogger(CarrinhoController.class);
+
+	private static final String QUADRINHO_CARRINHO_CADASTRADO_COM_SUCESSO = "Quadrinho carrinho cadastrado com sucesso!";
+	private static final String QUADRINHO_CARRINHO_ALTERADO_COM_SUCESSO = "Quadrinho carrinho alterado com sucesso!";
+	private static final String QUADRINHO_CARRINHO_REMOVIDO_COM_SUCESSO = "Quadrinho carrinho removido com sucesso!";
+
 	@Autowired
 	QuadrinhoCarrinhoService quadrinhoCarrinhoService;
 
@@ -34,27 +42,32 @@ public class QuadrinhoCarrinhoController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public MensagemDTO adicionarCliente(@Valid @RequestBody QuadrinhoCarrinhoDTO quadrinhoCarrinhoDTO)
 			throws GenericException {
-		return quadrinhoCarrinhoService.adicionarQuadrinhoCarrinho(quadrinhoCarrinhoDTO);
+		log.info("Entrando no metodo adicionar quadrinho carrinho no Controller: " + quadrinhoCarrinhoDTO);
+		quadrinhoCarrinhoService.adicionarQuadrinhoCarrinho(quadrinhoCarrinhoDTO);
+
+		return new MensagemDTO(QUADRINHO_CARRINHO_CADASTRADO_COM_SUCESSO);
 	}
 
-//	@GetMapping(path = "/{idQuadrinhoCarrinho}", produces = { MediaType.APPLICATION_JSON_VALUE })
-//	public QuadrinhoCarrinhoDTO consultarQuadrinhoPeloCarrinho(@PathVariable Long idQuadrinhoCarrinho) {
-//		return quadrinhoCarrinhoService.consultarRelatorioQuadrinhoCarrinho(idQuadrinhoCarrinho);
-//	}
-
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<QuadrinhoCarrinhoEntity> listarCliente() throws GenericException {
+	public List<QuadrinhoCarrinhoEntity> listarQuadrinhoCarrinho() throws GenericException {
+		log.info("Entrando no metodo listar cliente no Controller: ");
 		return quadrinhoCarrinhoService.listarQuadrinhoCarrinho();
 	}
 
 	@PutMapping(path = "/{idCliente}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public MensagemDTO alterarQuadrinhoCarrinho(@PathVariable Long idQuadrinhoCarrinho,
 			@Valid @RequestBody QuadrinhoCarrinhoDTO quadrinhoCarrinhoDTO) throws GenericException {
-		return quadrinhoCarrinhoService.alterarQuadrinhoCarrinho(idQuadrinhoCarrinho, quadrinhoCarrinhoDTO);
+		log.info("Entrando no metodo alterar quadrinho carrinho no Controller: ");
+		quadrinhoCarrinhoService.alterarQuadrinhoCarrinho(idQuadrinhoCarrinho, quadrinhoCarrinhoDTO);
+
+		return new MensagemDTO(QUADRINHO_CARRINHO_ALTERADO_COM_SUCESSO);
 	}
 
 	@DeleteMapping(path = "/{idCliente}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public MensagemDTO removerQuadrinhoCarrinho(@PathVariable Long idQuadrinhoCarrinho) throws GenericException {
-		return quadrinhoCarrinhoService.removerQuadrinhoCarrinho(idQuadrinhoCarrinho);
+		log.info("Entrando no metodo remover quadrinho carrinho no Controller: ");
+		quadrinhoCarrinhoService.removerQuadrinhoCarrinho(idQuadrinhoCarrinho);
+
+		return new MensagemDTO(QUADRINHO_CARRINHO_REMOVIDO_COM_SUCESSO);
 	}
 }

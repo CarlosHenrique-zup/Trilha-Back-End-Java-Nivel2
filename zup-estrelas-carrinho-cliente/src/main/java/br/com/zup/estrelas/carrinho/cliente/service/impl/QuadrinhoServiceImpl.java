@@ -3,10 +3,13 @@ package br.com.zup.estrelas.carrinho.cliente.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.zup.estrelas.carrinho.cliente.controller.CarrinhoController;
 import br.com.zup.estrelas.carrinho.cliente.dto.MensagemDTO;
 import br.com.zup.estrelas.carrinho.cliente.dto.QuadrinhoDTO;
 import br.com.zup.estrelas.carrinho.cliente.entity.QuadrinhoEntity;
@@ -15,6 +18,8 @@ import br.com.zup.estrelas.carrinho.cliente.service.QuadrinhoService;
 
 @Service
 public class QuadrinhoServiceImpl implements QuadrinhoService {
+
+	private final Logger log = LoggerFactory.getLogger(CarrinhoController.class);
 
 	private static final String QUADRINHO_CADASTRADO_COM_SUCESSO = "Quadrinho cadastrado com sucesso!";
 	private static final String QUADRINHO_JA_EXISTENTE = "Quadrinho já existente!";
@@ -26,6 +31,7 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
 	QuadrinhoRepository quadrinhoRepository;
 
 	public MensagemDTO adicionarQuadrinho(QuadrinhoDTO quadrinhoDTO) {
+		log.info("Entrando no metodo adicionar quadrinho na classe Service: " + quadrinhoDTO);
 		QuadrinhoEntity quadrinho = new QuadrinhoEntity();
 
 		if (quadrinhoRepository.existsByNome(quadrinhoDTO.getNome())) {
@@ -40,10 +46,12 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
 	}
 
 	public List<QuadrinhoEntity> listarQuadrinho() {
+		log.info("Entrando no metodo listar quadrinho na classe Service: ");
 		return (List<QuadrinhoEntity>) quadrinhoRepository.findAll();
 	}
 
 	public MensagemDTO alterarQuadrinho(Long idQuadrinho, QuadrinhoDTO quadrinhoDTO) {
+		log.info("Entrando no metodo alterar quadrinho na classe Service: " + quadrinhoDTO);
 		Optional<QuadrinhoEntity> quadrinhoConsultado = quadrinhoRepository.findById(idQuadrinho);
 
 		if (quadrinhoConsultado.isEmpty()) {
@@ -57,7 +65,7 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
 	}
 
 	public MensagemDTO removerQuadrinho(Long idQuadrinho) {
-
+		log.info("Entrando no metodo remover quadrinho na classe Service: " + idQuadrinho);
 		if (quadrinhoRepository.existsById(idQuadrinho)) {
 			quadrinhoRepository.deleteById(idQuadrinho);
 		}

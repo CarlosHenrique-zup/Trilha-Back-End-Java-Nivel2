@@ -32,8 +32,8 @@ public class ClienteController {
 	private final Logger log = LoggerFactory.getLogger(CarrinhoController.class);
 
 	private static final String CLIENTE_CADASTRADO_COM_SUCESSO = "Cliente cadastrado com sucesso!";
-	private static final String CLIENTE_REMOVIDO_COM_SUCESSO = "Cliente removido com sucesso!";
 	private static final String CLIENTE_ALTERADO_COM_SUCESSO = "Cliente alterado com sucesso!";
+	private static final String CLIENTE_REMOVIDO_COM_SUCESSO = "Cliente removido com sucesso!";
 
 	@Autowired
 	ClienteService clienteService;
