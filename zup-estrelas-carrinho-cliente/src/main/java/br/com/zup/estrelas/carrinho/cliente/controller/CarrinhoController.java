@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,28 +29,44 @@ import br.com.zup.estrelas.carrinho.cliente.service.CarrinhoService;
 @RequestMapping("/carrinho")
 public class CarrinhoController {
 
+	private final Logger log = LoggerFactory.getLogger(CarrinhoController.class);
+
+	private static final String CARRINHO_CADASTRADO_COM_SUCESSO = "Carrinho cadastrado com sucesso!";
+	private static final String CARRINHO_REMOVIDO_COM_SUCESSO = "Carrinho removido com sucesso!";
+	private static final String CARRINHO_ALTERADO_COM_SUCESSO = "Carrinho alterado com sucesso!";
+
 	@Autowired
 	CarrinhoService carrinhoService;
 
 	@PostMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseStatus(HttpStatus.CREATED)
 	public MensagemDTO adicionarCarrinho(@Valid @RequestBody CarrinhoDTO carrinhoDTO) throws GenericException {
-		return carrinhoService.adicionarCarrinho(carrinhoDTO);
+		log.info("Entrando no metodo adicionar carrinho no Controller: " + carrinhoDTO);
+		carrinhoService.adicionarCarrinho(carrinhoDTO);
+
+		return new MensagemDTO(CARRINHO_CADASTRADO_COM_SUCESSO);
 	}
 
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	public List<CarrinhoEntity> listarCarrinho() throws GenericException {
+		log.info("Entrando no metodo listar carrinho no Controller: ");
 		return carrinhoService.listarCarrinhos();
 	}
 
 	@PutMapping(path = "/{idCarrinho}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public MensagemDTO alterarCarrinho(@PathVariable Long idCarrinho, @Valid @RequestBody CarrinhoDTO carrinhoDTO)
 			throws GenericException {
-		return carrinhoService.alterarCarrinho(idCarrinho, carrinhoDTO);
+		log.info("Entrando no metodo alterar carrinho no Controller: " + carrinhoDTO);
+		carrinhoService.alterarCarrinho(idCarrinho, carrinhoDTO);
+
+		return new MensagemDTO(CARRINHO_ALTERADO_COM_SUCESSO);
 	}
 
 	@DeleteMapping(path = "/{idCarrinho}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public MensagemDTO removerCarrinho(@PathVariable Long idCarrinho) throws GenericException {
-		return carrinhoService.removerCarrinho(idCarrinho);
+		log.info("Entrando no metodo remover carrinho no Controller: " + idCarrinho);
+		carrinhoService.removerCarrinho(idCarrinho);
+
+		return new MensagemDTO(CARRINHO_REMOVIDO_COM_SUCESSO);
 	}
 }
