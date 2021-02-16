@@ -40,10 +40,6 @@ public class QuadrinhoCarrinhoServiceImpl implements QuadrinhoCarrinhoService {
 		QuadrinhoEntity quadrinho = new QuadrinhoEntity();
 		CarrinhoEntity carrinho = new CarrinhoEntity();
 
-//		if (quadrinhoCarrinhoRepository.existsById(carrinhoQuadrinhoDTO.getIdQuadrinhoCarrinho())) {
-//			return new MensagemDTO(QUADRINHO_CARRINHO_JA_EXISTENTE);
-//		}
-
 		if (quadrinhoRepository.existsByIdQuadrinho(quadrinho.getIdQuadrinho())
 				|| carrinhoRepository.existsByIdCarrinho(carrinho.getIdCarrinho())) {
 			return new MensagemDTO(QUADRINHO_CARRINHO_JA_EXISTENTE);
@@ -51,11 +47,9 @@ public class QuadrinhoCarrinhoServiceImpl implements QuadrinhoCarrinhoService {
 
 		BeanUtils.copyProperties(carrinhoQuadrinhoDTO, quadrinhoCarrinho);
 
-		// QuadrinhoEntity quadrinho = new QuadrinhoEntity();
 		quadrinho.setIdQuadrinho(carrinhoQuadrinhoDTO.getIdQuadrinho());
 		quadrinhoCarrinho.setQuadrinho(quadrinho);
 
-		// CarrinhoEntity carrinho = new CarrinhoEntity();
 		carrinho.setIdCarrinho(carrinhoQuadrinhoDTO.getIdCarrinho());
 		quadrinhoCarrinho.setCarrinho(carrinho);
 

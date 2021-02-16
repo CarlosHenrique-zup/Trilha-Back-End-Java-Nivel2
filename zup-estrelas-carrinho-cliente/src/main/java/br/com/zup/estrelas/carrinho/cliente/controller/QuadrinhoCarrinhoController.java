@@ -37,11 +37,6 @@ public class QuadrinhoCarrinhoController {
 		return quadrinhoCarrinhoService.adicionarQuadrinhoCarrinho(quadrinhoCarrinhoDTO);
 	}
 
-//	@GetMapping(path = "/{idQuadrinhoCarrinho}", produces = { MediaType.APPLICATION_JSON_VALUE })
-//	public QuadrinhoCarrinhoDTO consultarQuadrinhoPeloCarrinho(@PathVariable Long idQuadrinhoCarrinho) {
-//		return quadrinhoCarrinhoService.consultarRelatorioQuadrinhoCarrinho(idQuadrinhoCarrinho);
-//	}
-
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	public List<QuadrinhoCarrinhoEntity> listarCliente() throws GenericException {
 		return quadrinhoCarrinhoService.listarQuadrinhoCarrinho();
