@@ -23,7 +23,6 @@ public class ClienteServiceImplTests {
 	private ClienteDTO gerarCliente() {
 		ClienteDTO cliente = new ClienteDTO();
 		cliente.setNome("Junior Alonso");
-		cliente.setEmail("JuniorA2020@gmail.com");
 		cliente.setEndereco("Rua das Pedras");
 		cliente.setIdade(15);
 		cliente.setCpf("4242343243");

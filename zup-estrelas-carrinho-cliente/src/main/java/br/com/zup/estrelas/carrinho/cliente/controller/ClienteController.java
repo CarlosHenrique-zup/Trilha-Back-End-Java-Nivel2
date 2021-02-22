@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +27,7 @@ import br.com.zup.estrelas.carrinho.cliente.exceptions.GenericException;
 import br.com.zup.estrelas.carrinho.cliente.service.ClienteService;
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/v2")
 public class ClienteController {
 
 	private final Logger log = LoggerFactory.getLogger(CarrinhoController.class);
@@ -38,7 +39,7 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 
-	@PostMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
+	@PostMapping(path = "admin/clientes", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseStatus(HttpStatus.CREATED)
 	public MensagemDTO adicionarCliente(@Valid @RequestBody ClienteDTO clienteDTO) throws GenericException {
 		log.info("Entrando no metodo adicionar cliente no Controller: " + clienteDTO);
@@ -47,13 +48,13 @@ public class ClienteController {
 		return new MensagemDTO(CLIENTE_CADASTRADO_COM_SUCESSO);
 	}
 
-	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
+	@GetMapping(path = "protected/clientes", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public List<ClienteEntity> listarCliente() throws GenericException {
 		log.info("Entrando no metodo listar cliente no Controller: ");
 		return clienteService.listarClientes();
 	}
 
-	@PutMapping(path = "/{idCliente}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@PutMapping(path = "admin/clientes/{idCliente}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public MensagemDTO alterarCliente(@PathVariable Long idCliente, @Valid @RequestBody ClienteDTO clienteDTO)
 			throws GenericException {
 		log.info("Entrando no metodo listar cliente no Controller: ");
@@ -62,7 +63,8 @@ public class ClienteController {
 		return new MensagemDTO(CLIENTE_ALTERADO_COM_SUCESSO);
 	}
 
-	@DeleteMapping(path = "/{idCliente}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@DeleteMapping(path = "admin/clientes/{idCliente}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@PreAuthorize("hasRole('ADMIN')")
 	public MensagemDTO removerCliente(@PathVariable Long idCliente) throws GenericException {
 		log.info("Entrando no metodo listar cliente no Controller: " + idCliente);
 		clienteService.removerCliente(idCliente);

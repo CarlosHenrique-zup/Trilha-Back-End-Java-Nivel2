@@ -11,9 +11,6 @@ public class ClienteDTO {
 	private String nome;
 
 	@NotNull(message = "O campo não pode ser vazio.")
-	private String email;
-
-	@NotNull(message = "O campo não pode ser vazio.")
 	private String cpf;
 
 	@Positive(message = "O campo deve ser maior que zero.")
@@ -32,14 +29,6 @@ public class ClienteDTO {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public Integer getIdade() {

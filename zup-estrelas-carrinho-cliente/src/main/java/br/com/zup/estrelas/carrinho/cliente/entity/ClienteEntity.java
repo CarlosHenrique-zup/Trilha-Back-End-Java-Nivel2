@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -25,11 +27,9 @@ public class ClienteEntity {
 	@OneToMany(mappedBy = "cliente")
 	private List<CarrinhoEntity> carrinho;
 
-	@Column(nullable = false)
-	private String nome;
-
-	@Column(nullable = false)
-	private String email;
+	@OneToOne
+	@JoinColumn(name = "id_usuario")
+	private UsuarioEntity usuario;
 
 	@Column(nullable = false)
 	private String cpf;
@@ -53,22 +53,6 @@ public class ClienteEntity {
 
 	public void setIdCliente(Long idCliente) {
 		this.idCliente = idCliente;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getEndereco() {
@@ -110,4 +94,5 @@ public class ClienteEntity {
 	public void setCarrinho(List<CarrinhoEntity> carrinho) {
 		this.carrinho = carrinho;
 	}
+
 }

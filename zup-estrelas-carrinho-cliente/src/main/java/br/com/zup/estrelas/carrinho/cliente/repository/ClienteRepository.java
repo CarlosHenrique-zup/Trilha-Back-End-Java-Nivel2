@@ -11,4 +11,10 @@ public interface ClienteRepository extends CrudRepository<ClienteEntity, Long> {
 	boolean findByCpf(String cpf);
 
 	boolean existsByCpf(String cpf);
+
+	// Optional<ClienteEntity> findByEmail(String email);
+
+	// boolean existsByEmail(String email);
+
+//	ClienteEntity findByNome(String nome);
 }
