@@ -27,7 +27,7 @@ import br.com.zup.estrelas.carrinho.cliente.exceptions.GenericException;
 import br.com.zup.estrelas.carrinho.cliente.service.ClienteService;
 
 @RestController
-@RequestMapping("/v2")
+@RequestMapping("/clientes")
 public class ClienteController {
 
 	private final Logger log = LoggerFactory.getLogger(CarrinhoController.class);
@@ -39,7 +39,7 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 
-	@PostMapping(path = "admin/clientes", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@PostMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseStatus(HttpStatus.CREATED)
 	public MensagemDTO adicionarCliente(@Valid @RequestBody ClienteDTO clienteDTO) throws GenericException {
 		log.info("Entrando no metodo adicionar cliente no Controller: " + clienteDTO);
@@ -48,13 +48,13 @@ public class ClienteController {
 		return new MensagemDTO(CLIENTE_CADASTRADO_COM_SUCESSO);
 	}
 
-	@GetMapping(path = "protected/clientes", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
 	public List<ClienteEntity> listarCliente() throws GenericException {
 		log.info("Entrando no metodo listar cliente no Controller: ");
 		return clienteService.listarClientes();
 	}
 
-	@PutMapping(path = "admin/clientes/{idCliente}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@PutMapping(path = "/{idCliente}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public MensagemDTO alterarCliente(@PathVariable Long idCliente, @Valid @RequestBody ClienteDTO clienteDTO)
 			throws GenericException {
 		log.info("Entrando no metodo listar cliente no Controller: ");
@@ -63,7 +63,7 @@ public class ClienteController {
 		return new MensagemDTO(CLIENTE_ALTERADO_COM_SUCESSO);
 	}
 
-	@DeleteMapping(path = "admin/clientes/{idCliente}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@DeleteMapping(path = "/{idCliente}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@PreAuthorize("hasRole('ADMIN')")
 	public MensagemDTO removerCliente(@PathVariable Long idCliente) throws GenericException {
 		log.info("Entrando no metodo listar cliente no Controller: " + idCliente);

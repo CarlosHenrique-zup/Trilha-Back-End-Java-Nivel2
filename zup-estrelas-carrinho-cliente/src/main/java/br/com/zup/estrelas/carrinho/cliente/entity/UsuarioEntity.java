@@ -19,6 +19,9 @@ public class UsuarioEntity {
 	private Long idUsuario;
 
 	@Column(nullable = false)
+	private String username;
+
+	@Column(nullable = false)
 	private String nome;
 
 	@Column(nullable = false)
@@ -26,6 +29,9 @@ public class UsuarioEntity {
 
 	@Column(nullable = false)
 	private String senha;
+
+	@Column(nullable = false)
+	private boolean isAdmin;
 
 	@OneToOne
 	@JoinColumn(name = "id_cliente")
@@ -69,6 +75,22 @@ public class UsuarioEntity {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 
 }
