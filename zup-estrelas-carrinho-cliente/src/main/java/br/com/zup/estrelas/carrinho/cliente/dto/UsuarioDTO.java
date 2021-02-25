@@ -6,7 +6,8 @@ import javax.validation.constraints.Size;
 
 public class UsuarioDTO {
 
-//	private Long idUsuario;
+	@NotNull(message = "O campo não pode ser vazio.")
+	private String username;
 
 	@NotNull(message = "O campo não pode ser vazio.")
 	private String nome;
@@ -20,15 +21,7 @@ public class UsuarioDTO {
 	private String senha;
 
 	@NotNull(message = "O campo não pode ser vazio.")
-	private String role;
-
-//	public Long getIdUsuario() {
-//		return idUsuario;
-//	}
-//
-//	public void setIdUsuario(Long idUsuario) {
-//		this.idUsuario = idUsuario;
-//	}
+	private boolean isAdmin;
 
 	public String getNome() {
 		return nome;
@@ -54,11 +47,19 @@ public class UsuarioDTO {
 		this.senha = senha;
 	}
 
-	public String getRole() {
-		return role;
+	public boolean isAdmin() {
+		return isAdmin;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }
