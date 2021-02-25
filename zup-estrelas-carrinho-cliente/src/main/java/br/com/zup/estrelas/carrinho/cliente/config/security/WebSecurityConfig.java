@@ -27,11 +27,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private final Logger log = LoggerFactory.getLogger(WebSecurityConfig.class);
 
-//	@Override
-//	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests().anyRequest().authenticated().and().httpBasic().and().csrf().disable();
-//	}
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and().authorizeRequests()
@@ -48,17 +43,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		System.out.println(senhaVerificada);
 	}
-
-//	@Override
-//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//		String senhaVerificada = passwordEncoder.encode("senhaUsuario");
-//		log.info("Password encoded {}", passwordEncoder.encode("test"));
-//		auth.inMemoryAuthentication().withUser("usuarioTeste").password(senhaVerificada).roles("USER", "ADMIN").and()
-//				.withUser("adminTeste").password(passwordEncoder.encode("senhaAdmin")).roles("USER");
-//
-//		System.out.println(senhaVerificada);
-//	}
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
