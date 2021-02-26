@@ -22,19 +22,4 @@ public class LoginController {
 		return usuarioService.validarLogin(validaUsuarioDTO);
 
 	}
-
-//	@PostMapping
-//	public LoginDTO login(@RequestParam("nome") String username, @RequestParam("senha") String pwd) {
-//		if (!usuarioService.validarUsuarioESenha(username, pwd)) {
-//			return null;
-//		}
-//		String token = getJWTToken(username);
-//		LoginDTO user = new LoginDTO();
-//		user.setUsername(username);
-//		user.setToken(token);
-//
-//		return user;
-//
-//	}
-
 }
